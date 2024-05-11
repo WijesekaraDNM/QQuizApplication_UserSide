@@ -15,6 +15,7 @@ public class QuizApplication extends Application {
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
+        UserHomeController.setStage(stage);
     }
 
     public static void main(String[] args) {

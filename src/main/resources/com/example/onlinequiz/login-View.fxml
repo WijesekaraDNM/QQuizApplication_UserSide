@@ -96,7 +96,6 @@
                   <DropShadow />
                </effect>
             </Button>
-            <Label text="Label" />
             <Label layoutX="65.0" layoutY="344.0" text="Still not registered?">
                <font>
                   <Font size="14.0" />

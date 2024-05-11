@@ -23,7 +23,7 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <TextField fx:id="tf_username" layoutX="83.0" layoutY="148.0" prefHeight="20.0" prefWidth="180.0" promptText="User Name" style="-fx-border-color: #045F5F; -fx-border-width: 2; -fx-border-radius: 5;">
+            <TextField fx:id="tf_username" layoutX="83.0" layoutY="148.0" prefHeight="20.0" prefWidth="180.0" promptText=" Username (EGXXXX)" style="-fx-border-color: #045F5F; -fx-border-width: 2; -fx-border-radius: 5;">
                <effect>
                   <DropShadow />
                </effect>

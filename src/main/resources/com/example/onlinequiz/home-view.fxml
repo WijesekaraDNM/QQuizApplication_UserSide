@@ -85,7 +85,7 @@
    <center>
       <AnchorPane maxHeight="430.0" maxWidth="600.0" minHeight="430.0" minWidth="556.0" prefHeight="430.0" prefWidth="556.0" style="-fx-pref-width: 600;" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="lb_start" contentDisplay="RIGHT" graphicTextGap="20.0" layoutX="177.0" layoutY="176.0" text="Let's start the quiz">
+            <Label fx:id="lb_start" contentDisplay="RIGHT" graphicTextGap="20.0" layoutX="172.0" layoutY="203.0" text="Let's start the quiz" visible="false">
                <font>
                   <Font size="18.0" />
                </font>
@@ -103,7 +103,7 @@
                   </Button>
                </graphic>
             </Label>
-            <Label fx:id="lb_welcome" layoutX="139.0" layoutY="106.0" style="-fx-font-weight: bold;" text="Welcome to Quiz App!" textFill="#f77e05">
+            <Label fx:id="lb_welcome" layoutX="156.0" layoutY="75.0" style="-fx-font-weight: bold;" text="Welcome to Quiz App!" textFill="#f77e05">
                <font>
                   <Font size="24.0" />
                </font>
@@ -114,6 +114,16 @@
                      </effect>
                   </FontAwesomeIconView>
                </graphic>
+            </Label>
+            <Label fx:id="lb_availability" layoutX="225.0" layoutY="144.0" text="No available Quiz" textFill="#1569c7">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lb_marks" layoutX="250.0" layoutY="144.0" style="-fx-font-weight: bold;" text="Quiz Name" textFill="#1569c7" visible="false">
+               <font>
+                  <Font size="18.0" />
+               </font>
             </Label>
          </children>
       </AnchorPane>

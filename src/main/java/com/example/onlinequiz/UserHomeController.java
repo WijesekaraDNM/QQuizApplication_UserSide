@@ -1,6 +1,5 @@
 package com.example.onlinequiz;
 
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,9 +9,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
+
 
 import java.io.File;
 import java.io.IOException;
+import java.net.Socket;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -33,10 +36,26 @@ public class UserHomeController implements Initializable {
     private Label lb_welcome;
 
     @FXML
-    private Label lb_start;
+    private Label lb_availability;
 
     @FXML
-    private ListView lv_summary;
+    private static Label lb_marks;
+
+    @FXML
+    private Label lb_start;
+    @FXML
+    private Label lb_user;
+
+    @FXML
+    private static ListView lv_summary;
+    public static String quizName;
+    public static String marks;
+    public static Client client;
+
+    public static Thread quizThread;
+    private static Stage primaryStage;
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -44,7 +63,43 @@ public class UserHomeController implements Initializable {
         bt_start.setOnMouseClicked((MouseEvent event)  -> {
             bt_start.setStyle("-fx-background-color: #565051; -fx-text-fill: white; -fx-font-size:14px; -fx-font-weight:bold; -fx-width:85; -fx-height:39;");
         });
+        displayUserName();
+        quizFinder();
         //if server has sent the quiz, start label appears only....should be coded
+    }
+    public static void setStage(Stage home){
+        primaryStage = home;
+    }
+    public static void showStage(){
+        primaryStage.show();
+    }
+    public void quizFinder(){
+       quizThread=new Thread(new Runnable() {
+           @Override
+           public void run() {
+               boolean isNotConnected = true;
+               while(isNotConnected){
+                   try {
+                       client = new Client(new Socket("Localhost",1234));
+                       System.out.println("Connected to a server");
+                       displayStartLabel();
+                       isNotConnected = false;
+                   }catch (IOException e) {
+                       System.out.println("Server not connected");
+                   }
+               }
+           }
+       });
+       quizThread.start();
+    }
+
+    public void displayStartLabel(){
+        lb_availability.setVisible(false);
+        lb_start.setVisible(true);
+    }
+    public void displayUserName(){
+        String user = Data.username;
+        lb_user.setText(user);
     }
     public void loginMenuItemOnAction(ActionEvent event) throws IOException {
         // Load the login window
@@ -86,5 +141,20 @@ public class UserHomeController implements Initializable {
         }
     }
     public void summaryChangeOnAction(ActionEvent event) {
+
     }
+    public static void marksDisplay(String Marks) {
+        marks = Marks;
+        lb_marks.setVisible(true);
+        ObservableList<String> marksList = FXCollections.observableArrayList(marks.split(","));
+
+        // Set the ObservableList as the items of the ListView
+        lv_summary.setItems(marksList);
+
+        // Make the label visible
+        lb_marks.setVisible(true);
+    }
+
+
+
 }

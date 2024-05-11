@@ -64,7 +64,7 @@ public class UserLoginController implements Initializable {
         if(!username.isBlank() && !password.isBlank()){
             if(loginValidation(username,password)){
 
-                //Data.username = username;
+                Data.username = username;
                 try{
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("home-view.fxml"));
                     Parent root = loader.load();
