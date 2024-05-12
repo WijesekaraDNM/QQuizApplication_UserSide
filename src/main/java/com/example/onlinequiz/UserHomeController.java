@@ -81,7 +81,7 @@ public class UserHomeController implements Initializable {
                boolean isNotConnected = true;
                while(isNotConnected){
                    try {
-                       client = new Client(new Socket("Localhost",1234), lb_marks);
+                       client = new Client(new Socket("Localhost",1234), lb_marks, lv_summary);
                        client.start();
                        System.out.println("Connected to a server");
                        displayStartLabel();
@@ -101,6 +101,10 @@ public class UserHomeController implements Initializable {
        }).start();
     }
     public void displayStartLabel(){
+        if(quizName != null){
+            lb_marks.setText("Quiz Name: " + quizName);
+            lb_marks.setVisible(true);
+        }
         lb_availability.setVisible(false);
         lb_start.setVisible(true);
     }
@@ -150,17 +154,18 @@ public class UserHomeController implements Initializable {
     public void summaryChangeOnAction(ActionEvent event) {
 
     }
-    public static void marksDisplay(String Marks, Label markLabel) {
+    public static void marksDisplay(String Marks, Label markLabel, ListView marksDisplay) {
         marks = Marks;
         ObservableList<String> marksList = FXCollections.observableArrayList(marks.split(","));
 
-        // Set the ObservableList as the items of the ListView
-        //lv_summary.setItems(marksList);
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 markLabel.setText(quizName+" Marks: "+Marks);
                 markLabel.setVisible(true);
+
+                // Set the ObservableList as the items of the ListView
+                marksDisplay.setItems(marksList);
             }
         });
 

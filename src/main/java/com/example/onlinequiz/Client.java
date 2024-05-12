@@ -1,6 +1,7 @@
 package com.example.onlinequiz;
 
     import javafx.scene.control.Label;
+    import javafx.scene.control.ListView;
 
     import java.io.*;
     import java.net.Socket;
@@ -17,12 +18,14 @@ public class Client extends Thread{
     private int clientId;
 
     private Label markLabel;
+    private ListView markDisplay;
 
-    Client(Socket server, Label marks) throws IOException {
+    Client(Socket server, Label marks, ListView marksDisplay) throws IOException {
 
         try{
             this.server = server;
             this.markLabel = marks;
+            this.markDisplay = marksDisplay;
             this.bufferedReader = new BufferedReader(new InputStreamReader(server.getInputStream()));
             this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(server.getOutputStream()));
         }catch (IOException e){
@@ -113,7 +116,7 @@ public class Client extends Thread{
             if(matcher.find()){
                 String marks = matcher.group(1);
                 System.out.println("Marks obtained: "+ marks);
-                UserHomeController.marksDisplay(marks, markLabel);
+                UserHomeController.marksDisplay(marks, markLabel, markDisplay);
             }
         }
     }
