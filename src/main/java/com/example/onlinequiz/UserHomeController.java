@@ -16,6 +16,7 @@ import javafx.collections.FXCollections;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
 import java.util.Objects;
@@ -58,6 +59,8 @@ public class UserHomeController implements Initializable {
 
     private int retryIntervalMillis = 5000;
 
+    private String serverAddress = "192.168.226.5";
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Add hover effect to registration button
@@ -81,7 +84,8 @@ public class UserHomeController implements Initializable {
                boolean isNotConnected = true;
                while(isNotConnected){
                    try {
-                       client = new Client(new Socket("Localhost",1234), lb_marks, lv_summary);
+                       //InetAddress address = InetAddress.getByName(host);
+                       client = new Client(new Socket(serverAddress,1234), lb_marks, lv_summary);
                        client.start();
                        System.out.println("Connected to a server");
                        displayStartLabel();
