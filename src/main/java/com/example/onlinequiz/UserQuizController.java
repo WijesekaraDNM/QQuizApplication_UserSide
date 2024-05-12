@@ -112,9 +112,6 @@ public class UserQuizController implements Initializable {
         }
     }
 
-    public void clearQuestions(){
-
-    }
     public void finishButtonOnAction(ActionEvent event) throws IOException {
         submitAnswers();
         Stage quizStage = (Stage) bt_home.getScene().getWindow();
@@ -142,10 +139,12 @@ public class UserQuizController implements Initializable {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("answersFile.txt", true))) {
             writer.write(question + "," + answers.toString());
             writer.newLine();
+
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-        lb_success.setText("Successfully Submitted!");
     }
 
     public void submitAnswers( ){
@@ -164,6 +163,10 @@ public class UserQuizController implements Initializable {
                 answers = "4";
             }
             UserHomeController.client.sendAnswers("User:"+Data.username.substring(2,6)+","+currentQuestion+":"+answers);
+            rb_a.setSelected(false);
+            rb_b.setSelected(false);
+            rb_c.setSelected(false);
+            rb_d.setSelected(false);
             if(currentQuestion <= quiz.size()){
                 questionShow();
             }
