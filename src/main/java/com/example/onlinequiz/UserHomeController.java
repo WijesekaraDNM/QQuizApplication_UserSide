@@ -101,12 +101,14 @@ public class UserHomeController implements Initializable {
        }).start();
     }
     public void displayStartLabel(){
-        if(quizName != null){
-            lb_marks.setText("Quiz Name: " + quizName);
-            lb_marks.setVisible(true);
-        }
         lb_availability.setVisible(false);
         lb_start.setVisible(true);
+    }
+    public static void displayQuizNameLabel(Label marks){
+        if(quizName != null){
+            marks.setText("Quiz Name: " + quizName);
+            marks.setVisible(true);
+        }
     }
     public void displayUserName(){
         String user = Data.username;
@@ -156,7 +158,7 @@ public class UserHomeController implements Initializable {
     }
     public static void marksDisplay(String Marks, Label markLabel, ListView marksDisplay) {
         marks = Marks;
-        ObservableList<String> marksList = FXCollections.observableArrayList(marks.split(","));
+        ObservableList<String> marksList = FXCollections.observableArrayList(quizName+ marks);
 
         Platform.runLater(new Runnable() {
             @Override

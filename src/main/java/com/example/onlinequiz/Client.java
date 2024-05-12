@@ -82,6 +82,7 @@ public class Client extends Thread{
             if(matcherName.find()){
                 qName = matcherName.group(1);
                 UserHomeController.quizName = qName;
+                UserHomeController.displayQuizNameLabel(markLabel);
                 System.out.println("Quiz name: " + qName);
             }
 
