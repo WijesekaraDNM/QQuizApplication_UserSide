@@ -92,6 +92,8 @@ public class UserHomeController implements Initializable {
                        isNotConnected = false;
                    }catch (IOException e) {
                        System.out.println("Server not connected");
+                   }finally {
+                       System.out.println("Quiz Finder Thread stopped");
                    }
 
                    try {
@@ -149,7 +151,9 @@ public class UserHomeController implements Initializable {
             quizStage.setTitle("Quiz");
             quizStage.setScene(new Scene(root));
             quizStage.show();
+            lb_start.setVisible(false);
             bt_start.getScene().getWindow().hide();
+
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -159,7 +163,7 @@ public class UserHomeController implements Initializable {
 
     }
     public static void marksDisplay(String Marks, Label markLabel, ListView marksDisplay) {
-        marks = Marks;
+        marks = quizName+":"+Marks;
         ObservableList<String> marksList = FXCollections.observableArrayList(marks.split(","));
 
         Platform.runLater(new Runnable() {
