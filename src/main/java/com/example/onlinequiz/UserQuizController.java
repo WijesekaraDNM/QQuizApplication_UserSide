@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -46,6 +47,9 @@ public class UserQuizController implements Initializable {
     private RadioButton rb_c;
     @FXML
     private RadioButton rb_d;
+
+    @FXML
+    private GridPane gp_showFinishedQuizes;
 
     @FXML
     private Label lb_q_number;
