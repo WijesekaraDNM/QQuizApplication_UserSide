@@ -1,5 +1,6 @@
 package com.example.onlinequiz;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,7 +40,7 @@ public class UserHomeController implements Initializable {
     private Label lb_availability;
 
     @FXML
-    private static Label lb_marks;
+    private Label lb_marks;
 
     @FXML
     private Label lb_start;
@@ -47,7 +48,7 @@ public class UserHomeController implements Initializable {
     private Label lb_user;
 
     @FXML
-    private static ListView lv_summary;
+    private ListView lv_summary;
     public static String quizName;
     public static String marks;
     public static Client client;
@@ -55,7 +56,7 @@ public class UserHomeController implements Initializable {
     public static Thread quizThread;
     private static Stage primaryStage;
 
-
+    private int retryIntervalMillis = 5000;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -74,25 +75,31 @@ public class UserHomeController implements Initializable {
         primaryStage.show();
     }
     public void quizFinder(){
-       quizThread=new Thread(new Runnable() {
+       new Thread(new Runnable() {
            @Override
            public void run() {
                boolean isNotConnected = true;
                while(isNotConnected){
                    try {
-                       client = new Client(new Socket("Localhost",1234));
+                       client = new Client(new Socket("Localhost",1234), lb_marks);
+                       client.start();
                        System.out.println("Connected to a server");
                        displayStartLabel();
                        isNotConnected = false;
                    }catch (IOException e) {
                        System.out.println("Server not connected");
                    }
+
+                   try {
+                       Thread.sleep(retryIntervalMillis);
+                   } catch (InterruptedException e) {
+                       // Handle interruption if necessary
+                       e.printStackTrace();
+                   }
                }
            }
-       });
-       quizThread.start();
+       }).start();
     }
-
     public void displayStartLabel(){
         lb_availability.setVisible(false);
         lb_start.setVisible(true);
@@ -143,18 +150,20 @@ public class UserHomeController implements Initializable {
     public void summaryChangeOnAction(ActionEvent event) {
 
     }
-    public static void marksDisplay(String Marks) {
+    public static void marksDisplay(String Marks, Label markLabel) {
         marks = Marks;
-        lb_marks.setVisible(true);
         ObservableList<String> marksList = FXCollections.observableArrayList(marks.split(","));
 
         // Set the ObservableList as the items of the ListView
-        lv_summary.setItems(marksList);
+        //lv_summary.setItems(marksList);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                markLabel.setText(quizName+" Marks: "+Marks);
+                markLabel.setVisible(true);
+            }
+        });
 
-        // Make the label visible
-        lb_marks.setVisible(true);
     }
-
-
 
 }
