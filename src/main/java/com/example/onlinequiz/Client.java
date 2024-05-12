@@ -65,7 +65,7 @@ public class Client extends Thread{
             Pattern regexName = Pattern.compile(patternQuiz);
             Matcher matcherName = regexName.matcher(parts[0]);
 
-            Pattern regexQ = Pattern.compile(patternQ);
+            Pattern regexQ = Pattern.compile(patternQuiz);
 
             for(int i=0; i< parts.length; i++){
                 if(matcherName.find()){

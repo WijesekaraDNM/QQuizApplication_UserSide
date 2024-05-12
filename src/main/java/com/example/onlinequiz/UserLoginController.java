@@ -76,6 +76,8 @@ public class UserLoginController implements Initializable {
                     homeStage.setScene(new Scene(root));
                     homeStage.show();
 
+                    UserHomeController.setStage(homeStage);
+
                 }catch (IOException e) {
                     e.printStackTrace(); // Handle or log the exception appropriately
                 }

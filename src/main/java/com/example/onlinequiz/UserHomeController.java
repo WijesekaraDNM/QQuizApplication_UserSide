@@ -47,7 +47,7 @@ public class UserHomeController implements Initializable {
     private Label lb_user;
 
     @FXML
-    private ListView lv_summary;
+    private static ListView lv_summary;
     public static String quizName;
     public static String marks;
     public static Client client;
@@ -81,7 +81,6 @@ public class UserHomeController implements Initializable {
                while(isNotConnected){
                    try {
                        client = new Client(new Socket("Localhost",1234));
-                       client.start();
                        System.out.println("Connected to a server");
                        displayStartLabel();
                        isNotConnected = false;
@@ -95,7 +94,7 @@ public class UserHomeController implements Initializable {
     }
 
     public void displayStartLabel(){
-        lb_availability.setText(quizName);
+        lb_availability.setVisible(false);
         lb_start.setVisible(true);
     }
     public void displayUserName(){
@@ -146,12 +145,14 @@ public class UserHomeController implements Initializable {
     }
     public static void marksDisplay(String Marks) {
         marks = Marks;
-        lb_marks.setText(marks);
         lb_marks.setVisible(true);
         ObservableList<String> marksList = FXCollections.observableArrayList(marks.split(","));
 
         // Set the ObservableList as the items of the ListView
-        lv_summary.getItems().add(marks);
+        lv_summary.setItems(marksList);
+
+        // Make the label visible
+        lb_marks.setVisible(true);
     }
 
 

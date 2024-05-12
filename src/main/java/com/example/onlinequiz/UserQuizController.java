@@ -91,21 +91,36 @@ public class UserQuizController implements Initializable {
         }
     }
 
-    public void questionShow() {
-        Question q = quiz.get(currentQuestion);
-        lb_question.setText(q.getQuestion());
-        currentQuestion++;
-        lb_q_number.setText("Question: "+currentQuestion);
-        rb_a.setText(q.getAnswer1());
-        rb_b.setText(q.getAnswer2());
-        rb_c.setText(q.getAnswer3());
-        rb_d.setText(q.getAnswer4());
-        if(currentQuestion == quiz.size()) {
-            bt_submit.setVisible(false);
-            bt_finish.setVisible(true);
+    //for testing
+    public void getQuestions(){
+        for(Question q: quiz){
+            System.out.println("Question: " + q.getQuestion());
         }
     }
+
+    public void questionShow() {
+        if(currentQuestion != quiz.size()){
+            Question q = quiz.get(currentQuestion);
+            System.out.println(q.getQuestion());
+            lb_question.setText(q.getQuestion());
+            currentQuestion = currentQuestion + 1;
+            lb_q_number.setText("Question: "+currentQuestion);
+            rb_a.setText(q.getAnswer1());
+            rb_b.setText(q.getAnswer2());
+            rb_c.setText(q.getAnswer3());
+            rb_d.setText(q.getAnswer4());
+            if(currentQuestion == quiz.size()) {
+                bt_submit.setVisible(false);
+                bt_finish.setVisible(true);
+            }
+        }
+    }
+
+    public void clearQuestions(){
+
+    }
     public void finishButtonOnAction(ActionEvent event) throws IOException {
+        submitAnswers();
         Stage quizStage = (Stage) bt_home.getScene().getWindow();
         quizStage.close();
         UserHomeController.showStage();
@@ -138,22 +153,26 @@ public class UserQuizController implements Initializable {
     }
 
     public void submitAnswers( ){
-        if(rb_d.isPressed()||rb_a.isPressed()||rb_c.isPressed()||rb_d.isPressed()){
+        if(rb_a.isSelected()||rb_b.isSelected()||rb_c.isSelected()||rb_d.isSelected()){
             String answers;
-            if(rb_a.isPressed()){
+            if(rb_a.isSelected()){
                 answers = "1";
             }
-            if (rb_b.isPressed()) {
+            else if (rb_b.isSelected()) {
                 answers = "2";
             }
-            if (rb_c.isPressed()) {
+            else if (rb_c.isSelected()) {
                 answers = "3";
             }
-            if (rb_d.isPressed()){
+            else {
                 answers = "4";
             }
-            UserHomeController.client.sendAnswers("User:"+Data.username.substring(2,5));
-            questionShow();
+            UserHomeController.client.sendAnswers("User:"+Data.username.substring(2,6)+","+currentQuestion+":"+answers);
+            if(currentQuestion <= quiz.size()){
+                questionShow();
+            }
+        }else{
+            System.out.println("Select a answer");
         }
     }
     public void radioButtonOnAction(ActionEvent event) {
