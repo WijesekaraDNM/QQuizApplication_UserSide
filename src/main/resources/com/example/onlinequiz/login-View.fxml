@@ -18,27 +18,27 @@
    <left>
       <AnchorPane prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: #7D0541;" BorderPane.alignment="CENTER">
          <children>
-            <Text fill="WHITE" layoutX="49.0" layoutY="356.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Arial; -fx-font-weight: bold;" text="WE BUILD SOFTWARE ">
+            <Text fill="WHITE" layoutX="49.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Arial; -fx-font-weight: bold;" text="WE BUILD SOFTWARE " AnchorPane.bottomAnchor="35.185546875" AnchorPane.leftAnchor="49.0" AnchorPane.rightAnchor="49.0185546875">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="47.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quiz Application by">
+            <Text fill="WHITE" layoutX="47.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quiz Application by" AnchorPane.bottomAnchor="68.486328125" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="132.00390625">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="107.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUIZ">
+            <Text fill="WHITE" layoutX="107.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUIZ" AnchorPane.leftAnchor="107.0" AnchorPane.rightAnchor="106.41015625" AnchorPane.topAnchor="35.15234375">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
             </Text>
-            <Text fill="#f77e05" layoutX="170.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 24; -fx-fill: #f77e05; -fx-font-weight: bold;" text="App">
+            <Text fill="#f77e05" layoutX="178.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 24; -fx-fill: #f77e05; -fx-font-weight: bold;" text="App" AnchorPane.leftAnchor="178.0" AnchorPane.rightAnchor="75.359375" AnchorPane.topAnchor="83.1015625">
                <font>
                   <Font size="24.0" />
                </font>
             </Text>
-            <ImageView fx:id="brandingImageView" fitHeight="180.0" fitWidth="180.0" layoutX="60.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="brandingImageView" fitHeight="180.0" fitWidth="180.0" layoutX="60.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="122.0">
                <image>
                   <Image url="@../../../images/logo.png" />
                </image>
@@ -48,37 +48,37 @@
    <right>
       <AnchorPane prefHeight="400.0" prefWidth="300.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="bt_cancel" layoutX="258.0" layoutY="14.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" style="-fx-background-color: #7d0541; -fx-border-radius: 5;">
+            <Button fx:id="bt_cancel" layoutX="258.0" layoutY="14.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" style="-fx-background-color: #7d0541; -fx-border-radius: 5;" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="14.0">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="CLOSE" size="15" />
                </graphic>
             </Button>
-            <FontAwesomeIconView fx:id="icon_lock" fill="#7d0541" glyphName="LOCK" layoutX="138.0" layoutY="95.0" size="50" text="">
+            <FontAwesomeIconView fx:id="icon_lock" fill="#7d0541" glyphName="LOCK" layoutX="138.0" layoutY="95.0" size="50" text="" AnchorPane.leftAnchor="138.0" AnchorPane.rightAnchor="129.8571434020996" AnchorPane.topAnchor="52.14285659790039">
                <effect>
                   <Glow />
                </effect>
             </FontAwesomeIconView>
-            <FontAwesomeIconView fill="#7d0541" glyphName="USER" layoutX="37.0" layoutY="191.0" size="18">
+            <FontAwesomeIconView fill="#7d0541" glyphName="USER" layoutX="37.0" layoutY="191.0" size="18" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="174.0">
                <effect>
                   <Glow />
                </effect>
             </FontAwesomeIconView>
-            <TextField fx:id="tf_username" layoutX="65.0" layoutY="171.0" prefHeight="20.0" prefWidth="180.0" promptText="User Name" style="-fx-border-color: #7D0541; -fx-border-width: 2; -fx-border-radius: 5;">
+            <TextField fx:id="tf_username" layoutX="65.0" layoutY="171.0" prefHeight="20.0" prefWidth="180.0" promptText="User Name" style="-fx-border-color: #7D0541; -fx-border-width: 2; -fx-border-radius: 5;" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="57.0">
                <effect>
                   <DropShadow />
                </effect>
             </TextField>
-            <PasswordField fx:id="pf_password" layoutX="65.0" layoutY="220.0" prefHeight="20.0" prefWidth="180.0" promptText="Password" style="-fx-border-color: #7D0541; -fx-border-width: 2; -fx-border-radius: 5;">
+            <PasswordField fx:id="pf_password" layoutX="65.0" layoutY="220.0" prefHeight="20.0" prefWidth="180.0" promptText="Password" style="-fx-border-color: #7D0541; -fx-border-width: 2; -fx-border-radius: 5;" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="57.0">
                <effect>
                   <DropShadow />
                </effect>
             </PasswordField>
-            <FontAwesomeIconView fill="#7d0541" glyphName="KEY" layoutX="34.0" layoutY="240.0" size="18">
+            <FontAwesomeIconView fill="#7d0541" glyphName="KEY" layoutX="34.0" layoutY="240.0" size="18" AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="224.5714282989502">
                <effect>
                   <Glow />
                </effect>
             </FontAwesomeIconView>
-            <Text fill="#7d0541" layoutX="92.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="User Login">
+            <Text fill="#7d0541" layoutX="92.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="User Login" AnchorPane.leftAnchor="92.0" AnchorPane.rightAnchor="83.65625" AnchorPane.topAnchor="109.2734375">
                <font>
                   <Font name="Arial" size="24.0" />
                </font>
@@ -88,7 +88,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Button fx:id="bt_login" layoutX="120.0" layoutY="296.0" mnemonicParsing="false" onAction="#loginButtonOnAction" style="-fx-border-color: #7D0541; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-color: #7D0541;" text="Login" textFill="WHITE">
+            <Button fx:id="bt_login" layoutX="120.0" layoutY="296.0" mnemonicParsing="false" onAction="#loginButtonOnAction" style="-fx-border-color: #7D0541; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-color: #7D0541;" text="Login" textFill="WHITE" AnchorPane.bottomAnchor="74.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="121.0">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
@@ -96,12 +96,12 @@
                   <DropShadow />
                </effect>
             </Button>
-            <Label layoutX="65.0" layoutY="344.0" text="Still not registered?">
+            <Label layoutX="65.0" layoutY="344.0" text="Still not registered?" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="117.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Button fx:id="bt_registrationNavigation" layoutX="189.0" layoutY="339.0" mnemonicParsing="false" onAction="#registrationNavigationOnAction" style="-fx-background-color: transtparent;" text="Register" textFill="#7d0541">
+            <Button fx:id="bt_registrationNavigation" layoutX="189.0" layoutY="339.0" mnemonicParsing="false" onAction="#registrationNavigationOnAction" style="-fx-background-color: transtparent;" text="Register" textFill="#7d0541" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="189.0" AnchorPane.rightAnchor="44.0">
                <font>
                   <Font size="14.0" />
                </font>

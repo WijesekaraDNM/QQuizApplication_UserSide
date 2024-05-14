@@ -4,12 +4,22 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.RowConstraints;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -17,6 +27,7 @@ import java.net.Socket;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -34,6 +45,8 @@ public class UserQuizController implements Initializable {
 
     @FXML
     private Label lb_question;
+    @FXML
+    private GridPane gp_showFinish;
 
     @FXML
     private Label lb_success;
@@ -52,20 +65,22 @@ public class UserQuizController implements Initializable {
 
     public static List<Question> quiz;
 
+    private List<Label> questionLabels;
+
     private Integer currentQuestion=0;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        questionLabels = new ArrayList<>();
         // Add hover effect to buttons
-        bt_home.setOnMouseClicked((MouseEvent event) -> {
-            bt_home.setStyle("-fx-background-color: #565051; -fx-text-fill: white; -fx-font-size:14px; -fx-font-weight:bold; -fx-width:96; -fx-height:30;");
-        });
-        bt_submit.setOnMouseClicked((MouseEvent event) -> {
-            bt_submit.setStyle("-fx-background-color: #565051; -fx-text-fill: white; -fx-font-size:14px; -fx-font-weight:bold; -fx-width:66; -fx-height:30;");
-        });
+//        bt_home.setOnMouseClicked((MouseEvent event) -> {
+//            bt_home.setStyle("-fx-background-color: #565051; -fx-text-fill: white; -fx-font-size:14px; -fx-font-weight:bold; -fx-width:96; -fx-height:30;");
+//        });
+//        bt_submit.setOnMouseClicked((MouseEvent event) -> {
+//            bt_submit.setStyle("-fx-background-color: #565051; -fx-text-fill: white; -fx-font-size:14px; -fx-font-weight:bold; -fx-width:66; -fx-height:30;");
+//        });
+        createQuestionPane();
         questionShow();
-
     }
 
     public void homeButtonOnAction(ActionEvent event) throws IOException {
@@ -168,8 +183,10 @@ public class UserQuizController implements Initializable {
             rb_c.setSelected(false);
             rb_d.setSelected(false);
             if(currentQuestion <= quiz.size()){
+                colorChange(currentQuestion-1);
                 questionShow();
             }
+
         }else{
             System.out.println("Select a answer");
         }
@@ -195,6 +212,47 @@ public class UserQuizController implements Initializable {
             rb_c.setSelected(false);
             rb_a.setSelected(false);
         }
+    }
+    public void createQuestionPane(){
+        int sizeInt = quiz.size();
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setRadius(5.0);
+        dropShadow.setOffsetX(3.0);
+        dropShadow.setOffsetY(3.0);
+        for(int i=0;i<sizeInt;i++) {
+            Label newQ = customLabelQs(String.valueOf(i + 1));
+            newQ.setEffect(dropShadow);
+
+            gp_showFinish.setHalignment(newQ, HPos.CENTER);
+            gp_showFinish.setPadding(new Insets(20));
+            gp_showFinish.setHgap(3);
+            gp_showFinish.setVgap(3);
+            gp_showFinish.add(newQ, (i) % 3, (i) / 3);
+            System.out.println("Question added to the pane!" + (i)/3 + " " + (i)%3);
+            questionLabels.add(newQ);
+        }
+    }
+    public void colorChange(int i) {
+        Label label = questionLabels.get(i);
+        label.setFont(new Font("Arial", 20));
+        label.setStyle("-fx-border-color: white; -fx-background-color: #f77e05;");
+        // Set text color
+        label.setTextFill(Color.WHITE);
+        // Set padding
+        label.setPadding(new Insets(10));
+    }
+    public Label customLabelQs(String text){
+        Label newLabel = new Label(text);
+        newLabel.setFont(new Font("Arial", 20));
+        newLabel.setStyle("-fx-border-color: black; -fx-background-color: lightgrey;");
+
+        // Set text color
+        newLabel.setTextFill(Color.WHITE);
+
+        // Set padding
+        newLabel.setPadding(new Insets(10));
+
+        return newLabel;
     }
 
 }

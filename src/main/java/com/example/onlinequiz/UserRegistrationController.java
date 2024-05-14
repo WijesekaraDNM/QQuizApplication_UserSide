@@ -50,9 +50,6 @@ public class UserRegistrationController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        File brandingFile = new File("/images/logo.png");
-//        Image brandingImage = new Image(brandingFile.toURI().toString());
-//        brandingImageView.setImage(brandingImage);
 
         // Add hover effect to registration button
         bt_registration.setOnMouseClicked((MouseEvent event) -> {

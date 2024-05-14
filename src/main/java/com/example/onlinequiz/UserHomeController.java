@@ -59,7 +59,7 @@ public class UserHomeController implements Initializable {
 
     private int retryIntervalMillis = 5000;
 
-    private String serverAddress = "192.168.226.5";
+    private String serverAddress ="192.168.8.103";
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -107,12 +107,18 @@ public class UserHomeController implements Initializable {
        }).start();
     }
     public void displayStartLabel(){
-        if(quizName != null){
-            lb_marks.setText("Quiz Name: " + quizName);
-            lb_marks.setVisible(true);
-        }
         lb_availability.setVisible(false);
         lb_start.setVisible(true);
+    }
+
+    public static void displayQuizName(Label qName){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                qName.setText("Quiz Name:"+quizName);
+                qName.setVisible(true);
+            }
+        });
     }
     public void displayUserName(){
         String user = Data.username;
